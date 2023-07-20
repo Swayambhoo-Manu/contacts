@@ -8,9 +8,32 @@
   <body>
     <h1>Add contact details</h1>
     <form>
-      <input type="email" class="email" placeholder="Email:" required />
+      <input type="text" class="name" placeholder="Name:" required />
       <input type="text" class="phone" placeholder="Phone:" required />
       <button class="add" type="submit" onclick="addData()">Add Contact</button>
     </form>
+
+    <script>
+      let api = "https://script.google.com/macros/s/AKfycbyHyU3QfxEOA0MkAsBq0-8xjM3BWecLc4CB7nk7383AeCCuT11TmUy_VHEPoEPf1bw/exec";
+      let form = document.querySelector("form");
+      let add = document.querySelector(".add");
+      function addData() {
+        add.textContent = "Adding..";
+        let obj = {
+          name: form[0].value,
+          phone: form[1].value,
+        };
+        fetch(api, {
+          method: "POST",
+          body: JSON.stringify(obj),
+        })
+          .then((res) => res.text())
+          .then((data) => {
+            add.textContent = "Add Contact";
+            form.reset();
+          });
+      }
+    </script>
   </body>
 </html>
+
