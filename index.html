@@ -18,6 +18,10 @@
       let form = document.querySelector("form");
       let add = document.querySelector(".add");
       function addData() {
+        // validate for empty fields
+        if(form[0].value.length == 0 || form[1].value.length == 0){
+          return;
+        }
         add.textContent = "Adding..";
         let obj = {
           name: form[0].value,
