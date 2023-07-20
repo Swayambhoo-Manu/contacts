@@ -14,18 +14,21 @@
     </form>
 
     <script>
-      let api = "https://script.google.com/macros/s/AKfycbyHyU3QfxEOA0MkAsBq0-8xjM3BWecLc4CB7nk7383AeCCuT11TmUy_VHEPoEPf1bw/exec";
+      let api =
+        "https://script.google.com/macros/s/AKfycbyHyU3QfxEOA0MkAsBq0-8xjM3BWecLc4CB7nk7383AeCCuT11TmUy_VHEPoEPf1bw/exec";
       let form = document.querySelector("form");
       let add = document.querySelector(".add");
       function addData() {
+        let nameValue = form[0].value.trim();
+        let phoneValue = form[1].value.trim();
         // validate for empty fields
-        if(form[0].value.length == 0 || form[1].value.length == 0){
+        if (nameValue.length == 0 || phoneValue.length == 0) {
           return;
         }
         add.textContent = "Adding..";
         let obj = {
-          name: form[0].value,
-          phone: form[1].value,
+          name: nameValue,
+          phone: phoneValue,
         };
         fetch(api, {
           method: "POST",
@@ -40,4 +43,3 @@
     </script>
   </body>
 </html>
-
